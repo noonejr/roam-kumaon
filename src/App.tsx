@@ -6,6 +6,7 @@ import { Features } from './components/Features'
 import { Routes } from './components/Routes'
 import { Fleet } from './components/Fleet'
 import { Footer } from './components/Footer'
+import mainBg from './assets/main.webp'
 
 function App() {
   const [service, setService] = useState<'cab' | 'bike'>('cab')
@@ -18,7 +19,7 @@ function App() {
         <section id="hero" className="relative flex min-h-[80vh] items-center justify-center overflow-hidden px-4 py-20">
           <div className="absolute inset-0 z-0">
             <img
-              src="https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=800&auto=format&fit=crop"
+              src={mainBg}
               alt="Kumaon Mountains"
               className="h-full w-full object-cover"
               fetchpriority="high"
