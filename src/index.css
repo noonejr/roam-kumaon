@@ -1,0 +1,25 @@
+@import "tailwindcss";
+
+@theme {
+  --color-pine-green: #012d1d;
+  --color-cedar-brown: #755750;
+  --color-sunset-orange: #ff825c; /* Adjusted from tertiary-fixed-variant */
+  --color-mist-gray: #f8f9fa;
+  --color-whatsapp-green: #25d366;
+  
+  --font-headline: "Montserrat", sans-serif;
+  --font-body: "Inter", sans-serif;
+  
+  --radius-card: 16px;
+  --radius-input: 8px;
+}
+
+body {
+  @apply bg-mist-gray text-slate-900 antialiased;
+  font-family: var(--font-body);
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-headline);
+  @apply font-bold text-pine-green;
+}
