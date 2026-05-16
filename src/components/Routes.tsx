@@ -1,6 +1,4 @@
-import React from 'react';
-
-const Routes: React.FC = () => {
+export function Routes() {
   const routes = [
     {
       title: 'Haldwani / Kathgodam',
@@ -20,7 +18,7 @@ const Routes: React.FC = () => {
     <section id="routes" className="py-24 bg-gray-50">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">Discover Our Pilot Routes</h2>
+          <h2 className="text-4xl font-bold mb-4">Discover Our Pilot Routes</h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
             Starting with the most essential connections in the region.
           </p>
@@ -38,10 +36,10 @@ const Routes: React.FC = () => {
               <div className="p-8">
                 <div className="flex justify-between items-start mb-4">
                   <div>
-                    <span className="inline-block px-3 py-1 bg-blue-100 text-blue-600 text-sm font-semibold rounded-full mb-2">
+                    <span className="inline-block px-3 py-1 bg-pine-green/10 text-pine-green text-sm font-semibold rounded-full mb-2">
                       {route.role}
                     </span>
-                    <h3 className="text-3xl font-bold text-gray-900">{route.title}</h3>
+                    <h3 className="text-3xl font-bold">{route.title}</h3>
                   </div>
                 </div>
                 <p className="text-gray-600 text-lg">
@@ -54,6 +52,4 @@ const Routes: React.FC = () => {
       </div>
     </section>
   );
-};
-
-export default Routes;
+}

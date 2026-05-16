@@ -1,6 +1,4 @@
-import React from 'react';
-
-const Fleet: React.FC = () => {
+export function Fleet() {
   const vehicles = [
     {
       name: 'Compact',
@@ -51,20 +49,20 @@ const Fleet: React.FC = () => {
     <section id="vehicles" className="py-24 bg-white">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">Our Fleet</h2>
+          <h2 className="text-4xl font-bold mb-4">Our Fleet</h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
             Choose the right vehicle for your Himalayan adventure. All vehicles come with experienced mountain drivers.
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {vehicles.map((vehicle, index) => (
-            <div key={index} className="flex flex-col p-8 rounded-3xl border-2 border-gray-100 hover:border-blue-500 transition-colors bg-white shadow-sm">
-              <div className="text-blue-600 mb-6">
+            <div key={index} className="flex flex-col p-8 rounded-3xl border-2 border-gray-100 hover:border-pine-green transition-colors bg-white shadow-sm">
+              <div className="text-pine-green mb-6">
                 {vehicle.icon}
               </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-2">{vehicle.name}</h3>
+              <h3 className="text-2xl font-bold mb-2">{vehicle.name}</h3>
               <div className="flex items-baseline mb-6">
-                <span className="text-3xl font-bold text-blue-600">{vehicle.price}</span>
+                <span className="text-3xl font-bold text-pine-green">{vehicle.price}</span>
                 <span className="text-gray-500 ml-1">/ day</span>
               </div>
               <p className="text-gray-600 mb-8 flex-grow">
@@ -82,7 +80,7 @@ const Fleet: React.FC = () => {
               </ul>
               <button 
                 onClick={() => document.getElementById('hero')?.scrollIntoView({ behavior: 'smooth' })}
-                className="w-full py-4 bg-gray-900 text-white rounded-xl font-bold hover:bg-gray-800 transition-colors"
+                className="w-full py-4 bg-pine-green text-white rounded-xl font-bold hover:bg-pine-green/90 transition-colors"
               >
                 Inquire Now
               </button>
@@ -92,6 +90,4 @@ const Fleet: React.FC = () => {
       </div>
     </section>
   );
-};
-
-export default Fleet;
+}

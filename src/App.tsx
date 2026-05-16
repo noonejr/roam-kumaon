@@ -2,10 +2,10 @@ import { useState } from 'react'
 import { Header } from './components/Header'
 import { BikeForm } from './components/BikeForm'
 import { CabForm } from './components/CabForm'
-import Features from './components/Features'
-import Routes from './components/Routes'
-import Fleet from './components/Fleet'
-import Footer from './components/Footer'
+import { Features } from './components/Features'
+import { Routes } from './components/Routes'
+import { Fleet } from './components/Fleet'
+import { Footer } from './components/Footer'
 
 function App() {
   const [service, setService] = useState<'cab' | 'bike'>('cab')
