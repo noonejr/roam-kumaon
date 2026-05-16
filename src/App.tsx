@@ -22,7 +22,7 @@ function App() {
               src={mainBg}
               alt="Kumaon Mountains"
               className="h-full w-full object-cover"
-              fetchpriority="high"
+              fetchPriority="high"
               loading="eager"
             />
             <div className="absolute inset-0 bg-pine-green/60 mix-blend-multiply" />

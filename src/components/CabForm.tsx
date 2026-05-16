@@ -25,21 +25,22 @@ export function CabForm() {
   return (
     <form onSubmit={onSubmit} className="grid gap-4 md:grid-cols-2">
       <div className="md:col-span-2">
-        <label htmlFor="cab-name">Full Name</label>
+        <label htmlFor="cab-name">Full Name <span className="text-red-500">*</span></label>
         <input
           id="cab-name"
-          placeholder="e.g. John Doe"
+          placeholder="e.g. Amit Singh"
           className="w-full"
+          required
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
       </div>
 
       <div>
-        <label htmlFor="cab-pickup">Pickup</label>
+        <label htmlFor="cab-pickup">Pickup <span className="text-red-500">*</span></label>
         <CustomSelect
           id="cab-pickup"
-          label="Pickup"
+          required
           value={pickup}
           options={CAB_PICKUP_POINTS}
           onChange={setPickup}
@@ -47,10 +48,10 @@ export function CabForm() {
       </div>
 
       <div>
-        <label htmlFor="cab-dropoff">Drop-off</label>
+        <label htmlFor="cab-dropoff">Drop-off <span className="text-red-500">*</span></label>
         <CustomSelect
           id="cab-dropoff"
-          label="Drop-off"
+          required
           value={dropoff}
           options={CAB_DROPOFF_POINTS}
           onChange={setDropoff}
@@ -58,11 +59,12 @@ export function CabForm() {
       </div>
 
       <div>
-        <label htmlFor="cab-date">Travel Date</label>
+        <label htmlFor="cab-date">Travel Date <span className="text-red-500">*</span></label>
         <Suspense fallback={<div className="h-12 rounded-lg bg-slate-100 animate-pulse" />}>
           <CustomDatePicker
             id="cab-date"
             label="Date"
+            required
             value={date}
             onChange={setDate}
             minDate={today}
@@ -72,21 +74,22 @@ export function CabForm() {
       </div>
 
       <div>
-        <label htmlFor="cab-passengers">Passengers</label>
+        <label htmlFor="cab-passengers">Passengers <span className="text-red-500">*</span></label>
         <input
           id="cab-passengers"
           type="number"
           min="1"
+          required
           value={passengers}
           onChange={(e) => setPassengers(e.target.value)}
         />
       </div>
 
       <div className="md:col-span-2">
-        <label htmlFor="cab-category">Preferred Vehicle</label>
+        <label htmlFor="cab-category">Preferred Vehicle <span className="text-red-500">*</span></label>
         <CustomSelect
           id="cab-category"
-          label="Category"
+          required
           value={category}
           options={["SUV", "Sedan", "Hatchback"]}
           onChange={setCategory}

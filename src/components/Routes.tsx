@@ -1,3 +1,5 @@
+import bageshwarImg from '../assets/bageshwar.webp';
+
 export function Routes() {
   const routes = [
     {
@@ -10,7 +12,7 @@ export function Routes() {
       title: 'Bageshwar',
 
       description: 'The spiritual heart of Kumaon. Experience the confluence of Sarju and Gomti.',
-      image: 'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?q=80&w=800&auto=format&fit=crop',
+      image: bageshwarImg,
     },
     {
       title: 'Nainital',

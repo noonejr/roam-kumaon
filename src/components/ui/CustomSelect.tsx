@@ -3,18 +3,19 @@ import { clsx } from 'clsx'
 
 interface CustomSelectProps {
   id?: string
-  label: string
   value: string
-  options: string[]
+  options: readonly string[]
   onChange: (value: string) => void
+  required?: boolean
 }
 
-export function CustomSelect({ id, value, options, onChange, label }: CustomSelectProps) {
+export function CustomSelect({ id, value, options, onChange, required }: CustomSelectProps) {
   return (
     <Listbox value={value} onChange={onChange}>
       <div className="relative">
         <ListboxButton
           id={id}
+          aria-required={required}
           className={clsx(
             "relative w-full h-12 pl-4 pr-10 text-left cursor-default rounded-lg border border-slate-200 bg-slate-50 text-sm transition-all outline-none",
             "focus:border-pine-green focus:ring-1 focus:ring-pine-green focus:bg-white"

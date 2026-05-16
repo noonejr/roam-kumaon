@@ -9,9 +9,10 @@ interface CustomDatePickerProps {
   onChange: (date: string) => void
   minDate?: string
   placeholder?: string
+  required?: boolean
 }
 
-export function CustomDatePicker({ id, label, value, onChange, minDate, placeholder }: CustomDatePickerProps) {
+export function CustomDatePicker({ id, label, value, onChange, minDate, placeholder, required }: CustomDatePickerProps) {
   // Convert string 'yyyy-MM-dd' to Date object
   const selectedDate = value ? parse(value, 'yyyy-MM-dd', new Date()) : null
   const parsedMinDate = minDate ? parse(minDate, 'yyyy-MM-dd', new Date()) : undefined
@@ -22,9 +23,10 @@ export function CustomDatePicker({ id, label, value, onChange, minDate, placehol
       <DatePicker
         id={id}
         aria-label={label}
+        required={required}
         placeholderText={placeholder || "Select date"}
         selected={isValid(selectedDate) ? selectedDate : null}
-        onChange={(date) => onChange(date ? format(date, 'yyyy-MM-dd') : '')}
+        onChange={(date: Date | null) => onChange(date ? format(date, 'yyyy-MM-dd') : '')}
         dateFormat="yyyy-MM-dd"
         minDate={minDateObj}
         autoComplete="off"

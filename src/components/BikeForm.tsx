@@ -28,20 +28,24 @@ export function BikeForm() {
   return (
     <form onSubmit={onSubmit} className="grid gap-4 md:grid-cols-2">
       <div className="md:col-span-2">
-        <label>Full Name</label>
+        <label htmlFor="bike-name">Full Name <span className="text-red-500">*</span></label>
         <input 
+          id="bike-name"
           aria-label="Name" 
-          placeholder="e.g. Jane Smith"
+          placeholder="e.g. Amit Singh"
           className="w-full"
+          required
           value={name} 
           onChange={(e) => setName(e.target.value)} 
         />
       </div>
 
       <div>
-        <label>Start Date</label>
+        <label htmlFor="bike-start">Start Date <span className="text-red-500">*</span></label>
         <CustomDatePicker
+          id="bike-start"
           label="Start Date"
+          required
           value={startDate}
           onChange={(d) => { setStartDate(d); if (returnDate && d > returnDate) setReturnDate('') }}
           minDate={today}
@@ -50,9 +54,11 @@ export function BikeForm() {
       </div>
 
       <div>
-        <label>Return Date</label>
+        <label htmlFor="bike-return">Return Date <span className="text-red-500">*</span></label>
         <CustomDatePicker 
+          id="bike-return"
           label="Return Date" 
+          required
           value={returnDate} 
           onChange={setReturnDate}
           minDate={minReturnDate}
@@ -61,10 +67,11 @@ export function BikeForm() {
       </div>
 
       <div className="md:col-span-2">
-        <label className="block text-sm font-medium text-slate-700 mb-1">
+        <label htmlFor="bike-vehicle">
           Preferred Vehicle <span className="text-red-500">*</span>
         </label>
         <select 
+          id="bike-vehicle"
           required
           value={preferredVehicle}
           onChange={(e) => setPreferredVehicle(e.target.value)}
