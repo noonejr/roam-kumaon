@@ -14,6 +14,10 @@
   --radius-input: 8px;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   @apply bg-mist-gray text-slate-900 antialiased;
   font-family: var(--font-body);

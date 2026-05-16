@@ -4,8 +4,8 @@ import { openWhatsAppWithFallback } from '../utils/whatsapp'
 
 export function CabForm() {
   const [name, setName] = useState('')
-  const [pickup, setPickup] = useState(CAB_PICKUP_POINTS[0])
-  const [dropoff, setDropoff] = useState(CAB_DROPOFF_POINTS[0])
+  const [pickup, setPickup] = useState<string>(CAB_PICKUP_POINTS[0])
+  const [dropoff, setDropoff] = useState<string>(CAB_DROPOFF_POINTS[0])
   const [date, setDate] = useState('')
   const [passengers, setPassengers] = useState('1')
   const [category, setCategory] = useState('SUV')
