@@ -27,7 +27,7 @@ test('cab form submission builds expected whatsapp message', async ({ page }) =>
   await page.mouse.click(0, 0)
   await page.locator('#cab-category').click()
   await page.getByRole('option', { name: '7 Seater' }).click()
-  await page.getByRole('button', { name: 'Request Quote via WhatsApp' }).click({ force: true })
+  await page.getByRole('button', { name: 'Request Quote' }).click({ force: true })
   
   // Wait a bit for the async submission to complete
   await page.waitForFunction(() => (window as any).__lastOpenUrl !== '')
@@ -59,7 +59,7 @@ test('bike form submission includes fixed rental location', async ({ page }) => 
   await page.mouse.click(0, 0)
   await page.locator('#bike-vehicle').click()
   await page.getByRole('option', { name: 'Scooter (Activa/Jupiter)' }).click()
-  await page.getByRole('button', { name: 'Request Quote via WhatsApp' }).click({ force: true })
+  await page.getByRole('button', { name: 'Request Quote' }).click({ force: true })
   
   await page.waitForFunction(() => (window as any).__lastOpenUrl !== '')
 
