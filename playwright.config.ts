@@ -9,7 +9,10 @@ export default defineConfig({
     reuseExistingServer: true,
   },
   projects: [
-    { name: 'chromium', use: { ...devices['Desktop Chrome'] } },
-    { name: 'mobile', use: { ...devices['Pixel 7'] } },
+    { name: 'desktop-chrome', use: { ...devices['Desktop Chrome'] } },
+    { name: 'iphone-se', use: { ...devices['iPhone SE'] } }, // Small iOS screen
+    { name: 'iphone-14-pro', use: { ...devices['iPhone 14 Pro Max'] } }, // Large iOS screen
+    { name: 'pixel-5', use: { ...devices['Pixel 5'] } }, // Standard Android
+    { name: 'galaxy-s9', use: { ...devices['Galaxy S9+'] } }, // Older/Tall Android
   ],
 })

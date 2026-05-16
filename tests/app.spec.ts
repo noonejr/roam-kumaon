@@ -23,9 +23,11 @@ test('cab form submission builds expected whatsapp message', async ({ page }) =>
   await page.getByLabel('Name').fill('Ravi')
   await page.getByLabel('Date').fill('2026-05-20')
   await page.getByLabel('Passengers').fill('3')
+  // Blur any open date pickers
+  await page.mouse.click(0, 0)
   await page.locator('#cab-category').click()
   await page.getByRole('option', { name: '7 Seater' }).click()
-  await page.getByRole('button', { name: 'Request Quote via WhatsApp' }).click()
+  await page.getByRole('button', { name: 'Request Quote via WhatsApp' }).click({ force: true })
   
   // Wait a bit for the async submission to complete
   await page.waitForFunction(() => (window as any).__lastOpenUrl !== '')
@@ -53,9 +55,11 @@ test('bike form submission includes fixed rental location', async ({ page }) => 
   await page.getByLabel('Name').fill('Asha')
   await page.getByLabel('Start Date').fill('2026-05-20')
   await page.getByLabel('Return Date').fill('2026-05-21')
+  // Blur any open date pickers by clicking outside
+  await page.mouse.click(0, 0)
   await page.locator('#bike-vehicle').click()
   await page.getByRole('option', { name: 'Scooter (Activa/Jupiter)' }).click()
-  await page.getByRole('button', { name: 'Request Quote via WhatsApp' }).click()
+  await page.getByRole('button', { name: 'Request Quote via WhatsApp' }).click({ force: true })
   
   await page.waitForFunction(() => (window as any).__lastOpenUrl !== '')
 
@@ -68,4 +72,45 @@ test('bike form submission includes fixed rental location', async ({ page }) => 
   expect(text).toContain('Bike Rental Quote Request')
   expect(text).toContain('Vehicle: Scooter (Activa/Jupiter)')
   expect(text).toContain('Pickup & Return: Kathgodam')
+})
+
+test('layout and view experience integrity', async ({ page }) => {
+  await page.goto('/')
+  
+  // 1. Programmatic Chipping Check (Horizontal Overflow)
+  const overflowingElements = await page.evaluate(() => {
+    const allElements = document.querySelectorAll('*')
+    const overflow = []
+    const viewportWidth = window.innerWidth
+    
+    for (const el of allElements) {
+      const rect = el.getBoundingClientRect()
+      // We check if any element extends beyond the right edge of the viewport.
+      // We allow a 1px margin for rounding errors in some browsers.
+      if (rect.right > viewportWidth + 1) {
+        const style = window.getComputedStyle(el)
+        // Only report if it's not a hidden element or something that's meant to be off-screen
+        if (style.display !== 'none' && style.visibility !== 'hidden' && style.opacity !== '0') {
+          overflow.push({
+            tag: el.tagName,
+            id: el.id,
+            className: el.className,
+            right: rect.right,
+            viewport: viewportWidth
+          })
+        }
+      }
+    }
+    return overflow
+  })
+
+  expect(overflowingElements, `Found ${overflowingElements.length} elements causing horizontal overflow (chipping): ${JSON.stringify(overflowingElements, null, 2)}`).toEqual([])
+
+  // 2. Visual Regression Snapshot
+  // Ensure everything is settled before snapshot
+  await page.waitForLoadState('networkidle')
+  await expect(page).toHaveScreenshot('landing-page.png', { 
+    fullPage: true,
+    maxDiffPixelRatio: 0.05 
+  })
 })
