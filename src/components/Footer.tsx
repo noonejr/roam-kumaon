@@ -2,14 +2,14 @@ export function Footer() {
   return (
     <footer className="bg-pine-green text-white/80 py-16">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
           <div className="col-span-1 md:col-span-2">
             <h2 className="text-2xl font-bold !text-white mb-6">Roam-Kumaon</h2>
             <p className="text-lg leading-relaxed max-w-md">
               Your local partner for mountain travel in the Kumaon region. We provide reliable vehicle rentals and expert mountain drivers for an authentic Himalayan experience.
             </p>
           </div>
-          <div>
+          <div className="md:ml-auto">
             <h3 className="!text-white font-bold mb-6 uppercase tracking-wider">Quick Links</h3>
             <ul className="space-y-4">
               <li><a href="#about" className="hover:text-sunset-orange transition-colors">About Us</a></li>
@@ -18,15 +18,7 @@ export function Footer() {
               <li><a href="#hero" className="hover:text-sunset-orange transition-colors">Contact</a></li>
             </ul>
           </div>
-          <div>
-            <h3 className="!text-white font-bold mb-6 uppercase tracking-wider">Regional Hubs</h3>
-            <ul className="space-y-4">
-              <li>Haldwani</li>
-              <li>Kathgodam</li>
-              <li>Bageshwar</li>
-              <li>Almora</li>
-            </ul>
-          </div>
+
         </div>
         <div className="pt-8 border-t border-cedar-brown/30 flex flex-col md:flex-row justify-between items-center">
           <p className="text-sm mb-4 md:mb-0">

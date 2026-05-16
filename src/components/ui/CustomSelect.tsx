@@ -15,7 +15,6 @@ export function CustomSelect({ id, value, options, onChange, label }: CustomSele
       <div className="relative">
         <ListboxButton
           id={id}
-          aria-label={label}
           className={clsx(
             "relative w-full h-12 pl-4 pr-10 text-left cursor-default rounded-lg border border-slate-200 bg-slate-50 text-sm transition-all outline-none",
             "focus:border-pine-green focus:ring-1 focus:ring-pine-green focus:bg-white"

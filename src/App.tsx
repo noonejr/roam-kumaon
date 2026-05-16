@@ -17,10 +17,12 @@ function App() {
         {/* Hero Section */}
         <section id="hero" className="relative flex min-h-[80vh] items-center justify-center overflow-hidden px-4 py-20">
           <div className="absolute inset-0 z-0">
-            <img 
-              src="https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=2071&auto=format&fit=crop" 
-              alt="Kumaon Mountains" 
+            <img
+              src="https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=800&auto=format&fit=crop"
+              alt="Kumaon Mountains"
               className="h-full w-full object-cover"
+              fetchpriority="high"
+              loading="eager"
             />
             <div className="absolute inset-0 bg-pine-green/60 mix-blend-multiply" />
           </div>

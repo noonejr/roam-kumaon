@@ -1,8 +1,11 @@
-import { type FormEvent, useState } from 'react'
+import { type FormEvent, useState, lazy, Suspense } from 'react'
 import { CAB_DROPOFF_POINTS, CAB_PICKUP_POINTS } from '../constants/locations'
 import { openWhatsAppWithFallback } from '../utils/whatsapp'
 import { CustomSelect } from './ui/CustomSelect'
-import { CustomDatePicker } from './ui/CustomDatePicker'
+
+const CustomDatePicker = lazy(() =>
+  import('./ui/CustomDatePicker').then(m => ({ default: m.CustomDatePicker }))
+)
 
 const today = new Date().toLocaleDateString('en-CA')
 
@@ -56,14 +59,16 @@ export function CabForm() {
 
       <div>
         <label htmlFor="cab-date">Travel Date</label>
-        <CustomDatePicker
-          id="cab-date"
-          label="Date"
-          value={date}
-          onChange={setDate}
-          minDate={today}
-          placeholder="yyyy-mm-dd"
-        />
+        <Suspense fallback={<div className="h-12 rounded-lg bg-slate-100 animate-pulse" />}>
+          <CustomDatePicker
+            id="cab-date"
+            label="Date"
+            value={date}
+            onChange={setDate}
+            minDate={today}
+            placeholder="yyyy-mm-dd"
+          />
+        </Suspense>
       </div>
 
       <div>
