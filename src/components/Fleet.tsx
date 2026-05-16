@@ -1,5 +1,9 @@
-export function Fleet() {
-  const vehicles = [
+interface FleetProps {
+  service?: 'cab' | 'bike'
+}
+
+export function Fleet({ service = 'cab' }: FleetProps) {
+  const cabVehicles = [
     {
       name: 'Shared',
       description: 'The most economical way to travel. Join other travelers on popular routes across the Kumaon region.',
@@ -40,7 +44,43 @@ export function Fleet() {
         </svg>
       ),
     },
-  ];
+  ]
+
+  const bikeVehicles = [
+    {
+      name: 'Scooters',
+      description: 'Activa, Jupiter or similar. Perfect for local sightseeing and easy commuting.',
+      features: ['Automatic Transmission', 'Fuel Efficient', 'Helmet Included'],
+      icon: (
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-10 h-10">
+          <path d="M12 17.5c0 1.93-1.57 3.5-3.5 3.5S5 19.43 5 17.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5Z" />
+          <path d="M19 17.5c0 1.93-1.57 3.5-3.5 3.5s-3.5-1.57-3.5-3.5 1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5Z" />
+          <path d="M15.5 17.5 12 9l-3.5 8.5" />
+          <path d="M12 9H8.5" />
+          <path d="M12 9h1.5l2.5 5" />
+          <path d="M8.5 17.5H15.5" />
+        </svg>
+      ),
+    },
+    {
+      name: 'Motorcycles',
+      description: 'Pulsar, Apache, or Bullet. For those who want more power and a classic mountain ride.',
+      features: ['Geared Bikes', 'Powerful Engine', 'Mountain Ready'],
+      icon: (
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-10 h-10">
+          <path d="m18.5 17.5-2.5-4.5h-5.5l-2.5 4.5" />
+          <circle cx="5.5" cy="17.5" r="2.5" />
+          <circle cx="18.5" cy="17.5" r="2.5" />
+          <path d="M5.5 15h13" />
+          <path d="M16 13l-1.5-3h-4.5L8.5 13" />
+          <path d="M10 10V8" />
+          <path d="M14 10V8" />
+        </svg>
+      ),
+    }
+  ]
+
+  const vehicles = service === 'cab' ? cabVehicles : bikeVehicles
 
   return (
     <section id="vehicles" className="py-24 bg-white">
@@ -48,10 +88,16 @@ export function Fleet() {
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold mb-4">Our Fleet</h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Choose the right vehicle for your Himalayan adventure. All vehicles come with experienced mountain drivers.
+            {service === 'cab'
+              ? 'Choose the right vehicle for your Himalayan adventure. All vehicles come with experienced mountain drivers.'
+              : 'Explore Kumaon at your own pace with our well-maintained self-drive rentals.'}
           </p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className={`grid grid-cols-1 gap-8 ${
+          service === 'cab'
+            ? 'md:grid-cols-3'
+            : 'md:grid-cols-2 max-w-4xl mx-auto'
+        }`}>
           {vehicles.map((vehicle, index) => (
             <div key={index} className="flex flex-col p-8 rounded-3xl border-2 border-gray-100 hover:border-pine-green transition-colors bg-white shadow-sm">
               <div className="text-pine-green mb-6">

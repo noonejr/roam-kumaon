@@ -41,6 +41,7 @@ test('cab form submission builds expected whatsapp message', async ({ page }) =>
 test('bike form submission includes fixed rental location', async ({ page }) => {
   await page.goto('/')
   await page.getByRole('button', { name: 'Rent a Bike' }).click()
+  await expect(page.getByText('Pickup & Return Location')).toHaveCount(0)
   await page.evaluate(() => { 
     (window as any).__lastOpenUrl = ''; 
     window.open = ((u: string) => { (window as any).__lastOpenUrl = u; return {} as Window }) as any;
@@ -49,6 +50,7 @@ test('bike form submission includes fixed rental location', async ({ page }) => 
   await page.getByLabel('Name').fill('Asha')
   await page.getByLabel('Start Date').fill('2026-05-20')
   await page.getByLabel('Return Date').fill('2026-05-21')
+  await page.locator('form select').first().selectOption('Scooter (Activa/Jupiter)')
   await page.getByRole('button', { name: 'Request Quote via WhatsApp' }).click()
   
   await page.waitForFunction(() => (window as any).__lastOpenUrl !== '')
@@ -60,5 +62,6 @@ test('bike form submission includes fixed rental location', async ({ page }) => 
     return decodeURIComponent(url.searchParams.get('text') || '');
   })
   expect(text).toContain('Bike Rental Quote Request')
+  expect(text).toContain('Vehicle: Scooter (Activa/Jupiter)')
   expect(text).toContain('Pickup & Return: Kathgodam')
 })

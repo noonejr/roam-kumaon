@@ -3,17 +3,21 @@ import { BIKE_RENTAL_LOCATION } from '../constants/locations'
 import { openWhatsAppWithFallback } from '../utils/whatsapp'
 import { CustomDatePicker } from './ui/CustomDatePicker'
 
+const today = new Date().toLocaleDateString('en-CA')
+
 export function BikeForm() {
   const [name, setName] = useState('')
   const [startDate, setStartDate] = useState('')
   const [returnDate, setReturnDate] = useState('')
   const [preferredVehicle, setPreferredVehicle] = useState('')
+  const minReturnDate = startDate && startDate > today ? startDate : today
 
   const isValid = 
     name.trim().length > 0 && 
     startDate.length > 0 && 
     returnDate.length > 0 && 
     returnDate >= startDate &&
+    returnDate >= today &&
     preferredVehicle.length > 0
 
   const onSubmit = async (e: FormEvent) => {
@@ -34,19 +38,13 @@ export function BikeForm() {
         />
       </div>
 
-      <div className="md:col-span-2">
-        <label>Pickup & Return Location</label>
-        <div className="flex h-12 items-center px-4 rounded-lg border border-slate-200 bg-slate-100 text-sm text-slate-600">
-          {BIKE_RENTAL_LOCATION}
-        </div>
-      </div>
-
       <div>
         <label>Start Date</label>
-        <CustomDatePicker 
-          label="Start Date" 
-          value={startDate} 
-          onChange={setStartDate}
+        <CustomDatePicker
+          label="Start Date"
+          value={startDate}
+          onChange={(d) => { setStartDate(d); if (returnDate && d > returnDate) setReturnDate('') }}
+          minDate={today}
           placeholder="yyyy-mm-dd"
         />
       </div>
@@ -57,7 +55,7 @@ export function BikeForm() {
           label="Return Date" 
           value={returnDate} 
           onChange={setReturnDate}
-          minDate={startDate}
+          minDate={minReturnDate}
           placeholder="yyyy-mm-dd"
         />
       </div>

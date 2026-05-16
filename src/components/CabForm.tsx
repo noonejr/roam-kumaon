@@ -1,6 +1,10 @@
 import { type FormEvent, useState } from 'react'
 import { CAB_DROPOFF_POINTS, CAB_PICKUP_POINTS } from '../constants/locations'
 import { openWhatsAppWithFallback } from '../utils/whatsapp'
+import { CustomSelect } from './ui/CustomSelect'
+import { CustomDatePicker } from './ui/CustomDatePicker'
+
+const today = new Date().toLocaleDateString('en-CA')
 
 export function CabForm() {
   const [name, setName] = useState('')
@@ -18,70 +22,70 @@ export function CabForm() {
   return (
     <form onSubmit={onSubmit} className="grid gap-4 md:grid-cols-2">
       <div className="md:col-span-2">
-        <label>Full Name</label>
-        <input 
-          aria-label="Name" 
+        <label htmlFor="cab-name">Full Name</label>
+        <input
+          id="cab-name"
           placeholder="e.g. John Doe"
-          value={name} 
-          onChange={(e) => setName(e.target.value)} 
-        />
-      </div>
-      
-      <div>
-        <label>Pickup</label>
-        <select 
-          aria-label="Pickup" 
-          value={pickup} 
-          onChange={(e) => setPickup(e.target.value)}
-        >
-          {CAB_PICKUP_POINTS.map((p) => <option key={p} value={p}>{p}</option>)}
-        </select>
-      </div>
-
-      <div>
-        <label>Drop-off</label>
-        <select 
-          aria-label="Drop-off" 
-          value={dropoff} 
-          onChange={(e) => setDropoff(e.target.value)}
-        >
-          {CAB_DROPOFF_POINTS.map((p) => <option key={p} value={p}>{p}</option>)}
-        </select>
-      </div>
-
-      <div>
-        <label>Travel Date</label>
-        <input 
-          aria-label="Date" 
-          type="date" 
-          className="[color-scheme:light]"
-          value={date} 
-          onChange={(e) => setDate(e.target.value)} 
+          className="w-full"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
         />
       </div>
 
       <div>
-        <label>Passengers</label>
-        <input 
-          aria-label="Passengers" 
-          type="number" 
-          min="1" 
-          value={passengers} 
-          onChange={(e) => setPassengers(e.target.value)} 
+        <label htmlFor="cab-pickup">Pickup</label>
+        <CustomSelect
+          id="cab-pickup"
+          label="Pickup"
+          value={pickup}
+          options={CAB_PICKUP_POINTS}
+          onChange={setPickup}
+        />
+      </div>
+
+      <div>
+        <label htmlFor="cab-dropoff">Drop-off</label>
+        <CustomSelect
+          id="cab-dropoff"
+          label="Drop-off"
+          value={dropoff}
+          options={CAB_DROPOFF_POINTS}
+          onChange={setDropoff}
+        />
+      </div>
+
+      <div>
+        <label htmlFor="cab-date">Travel Date</label>
+        <CustomDatePicker
+          id="cab-date"
+          label="Date"
+          value={date}
+          onChange={setDate}
+          minDate={today}
+          placeholder="yyyy-mm-dd"
+        />
+      </div>
+
+      <div>
+        <label htmlFor="cab-passengers">Passengers</label>
+        <input
+          id="cab-passengers"
+          type="number"
+          min="1"
+          value={passengers}
+          onChange={(e) => setPassengers(e.target.value)}
         />
       </div>
 
       <div className="md:col-span-2">
-        <label>Preferred Vehicle</label>
-        <select 
-          aria-label="Category" 
-          value={category} 
-          onChange={(e) => setCategory(e.target.value)} 
-        >
-          <option value="Shared">Shared</option>
-          <option value="4 Seater">4 Seater</option>
-          <option value="7 Seater">7 Seater</option>
-        </select>
+        <label htmlFor="cab-category">Preferred Vehicle</label>
+        <CustomSelect
+          id="cab-category"
+          label="Category"
+          value={category}
+          options={["SUV", "Sedan", "Hatchback"]}
+          onChange={setCategory}
+        />
       </div>
 
       <button 

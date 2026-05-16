@@ -58,3 +58,38 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 label {
   @apply mb-1.5 block text-xs font-semibold text-slate-500 uppercase tracking-wider;
 }
+
+/* Custom DatePicker Styling Overrides */
+.modern-datepicker {
+  @apply !border-slate-200 !rounded-xl !shadow-2xl !font-body !overflow-hidden !border-0;
+}
+
+.modern-datepicker .react-datepicker__header {
+  @apply !bg-pine-green !border-pine-green !pt-3 !rounded-t-xl;
+}
+
+.modern-datepicker .react-datepicker__current-month,
+.modern-datepicker .react-datepicker__day-name {
+  @apply !text-white;
+}
+
+.modern-datepicker .react-datepicker__day {
+  @apply !transition-colors !m-0.5;
+}
+
+.modern-datepicker .react-datepicker__day--selected,
+.modern-datepicker .react-datepicker__day--keyboard-selected {
+  @apply !bg-pine-green !text-white !rounded-md;
+}
+
+.modern-datepicker .react-datepicker__day:hover {
+  @apply !bg-slate-100 !text-slate-900 !rounded-md;
+}
+
+.modern-datepicker .react-datepicker__navigation-icon::before {
+  @apply !border-white;
+}
+
+.modern-datepicker-popper {
+  @apply !z-50;
+}
