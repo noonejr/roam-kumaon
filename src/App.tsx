@@ -2,6 +2,10 @@ import { useState } from 'react'
 import { Header } from './components/Header'
 import { BikeForm } from './components/BikeForm'
 import { CabForm } from './components/CabForm'
+import Features from './components/Features'
+import Routes from './components/Routes'
+import Fleet from './components/Fleet'
+import Footer from './components/Footer'
 
 function App() {
   const [service, setService] = useState<'cab' | 'bike'>('cab')
@@ -11,7 +15,7 @@ function App() {
       <Header />
       <main>
         {/* Hero Section */}
-        <section className="relative flex min-h-[80vh] items-center justify-center overflow-hidden px-4 py-20">
+        <section id="hero" className="relative flex min-h-[80vh] items-center justify-center overflow-hidden px-4 py-20">
           <div className="absolute inset-0 z-0">
             <img 
               src="https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=2071&auto=format&fit=crop" 
@@ -54,7 +58,12 @@ function App() {
             </div>
           </div>
         </section>
+
+        <Features />
+        <Routes />
+        <Fleet />
       </main>
+      <Footer />
     </div>
   )
 }
