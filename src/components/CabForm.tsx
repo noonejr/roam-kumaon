@@ -1,5 +1,6 @@
 import { type FormEvent, useState, lazy, Suspense } from 'react'
 import { CAB_DROPOFF_POINTS, CAB_PICKUP_POINTS } from '../constants/locations'
+import { CAB_VEHICLES } from '../constants/vehicles'
 import { openWhatsAppWithFallback } from '../utils/whatsapp'
 import { CustomSelect } from './ui/CustomSelect'
 
@@ -15,8 +16,8 @@ export function CabForm() {
   const [dropoff, setDropoff] = useState<string>(CAB_DROPOFF_POINTS[0])
   const [date, setDate] = useState('')
   const [passengers, setPassengers] = useState('1')
-  const [category, setCategory] = useState('4 Seater')
-  const isValid = name.trim().length > 0 && date.length > 0 && Number.isInteger(Number(passengers)) && Number(passengers) >= 1
+  const [category, setCategory] = useState<string>('')
+  const isValid = name.trim().length > 0 && date.length > 0 && Number.isInteger(Number(passengers)) && Number(passengers) >= 1 && category.length > 0
   const onSubmit = async (e: FormEvent) => {
     e.preventDefault()
     const message = `Cab Quote Request\nName: ${name.trim()}\nPickup: ${pickup}\nDrop-off: ${dropoff}\nDate: ${date}\nPassengers: ${passengers}\nVehicle: ${category}`
@@ -91,7 +92,8 @@ export function CabForm() {
           id="cab-category"
           required
           value={category}
-          options={["Shared", "4 Seater", "7 Seater"]}
+          placeholder="Select a vehicle"
+          options={CAB_VEHICLES}
           onChange={setCategory}
         />
       </div>

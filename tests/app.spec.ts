@@ -23,6 +23,8 @@ test('cab form submission builds expected whatsapp message', async ({ page }) =>
   await page.getByLabel('Name').fill('Ravi')
   await page.getByLabel('Date').fill('2026-05-20')
   await page.getByLabel('Passengers').fill('3')
+  await page.locator('#cab-category').click()
+  await page.getByRole('option', { name: '7 Seater' }).click()
   await page.getByRole('button', { name: 'Request Quote via WhatsApp' }).click()
   
   // Wait a bit for the async submission to complete
@@ -36,7 +38,7 @@ test('cab form submission builds expected whatsapp message', async ({ page }) =>
   })
   expect(text).toContain('Cab Quote Request')
   expect(text).toContain('Name: Ravi')
-  expect(text).toContain('Vehicle: 4 Seater')
+  expect(text).toContain('Vehicle: 7 Seater')
 })
 
 test('bike form submission includes fixed rental location', async ({ page }) => {
@@ -51,7 +53,8 @@ test('bike form submission includes fixed rental location', async ({ page }) => 
   await page.getByLabel('Name').fill('Asha')
   await page.getByLabel('Start Date').fill('2026-05-20')
   await page.getByLabel('Return Date').fill('2026-05-21')
-  await page.locator('form select').first().selectOption('Scooter (Activa/Jupiter)')
+  await page.locator('#bike-vehicle').click()
+  await page.getByRole('option', { name: 'Scooter (Activa/Jupiter)' }).click()
   await page.getByRole('button', { name: 'Request Quote via WhatsApp' }).click()
   
   await page.waitForFunction(() => (window as any).__lastOpenUrl !== '')

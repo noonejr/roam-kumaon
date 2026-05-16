@@ -1,7 +1,9 @@
 import { type FormEvent, useState } from 'react'
 import { BIKE_RENTAL_LOCATION } from '../constants/locations'
+import { BIKE_VEHICLES } from '../constants/vehicles'
 import { openWhatsAppWithFallback } from '../utils/whatsapp'
 import { CustomDatePicker } from './ui/CustomDatePicker'
+import { CustomSelect } from './ui/CustomSelect'
 
 const today = new Date().toLocaleDateString('en-CA')
 
@@ -70,18 +72,14 @@ export function BikeForm() {
         <label htmlFor="bike-vehicle">
           Preferred Vehicle <span className="text-red-500">*</span>
         </label>
-        <select 
+        <CustomSelect
           id="bike-vehicle"
           required
           value={preferredVehicle}
-          onChange={(e) => setPreferredVehicle(e.target.value)}
-          className="w-full h-12 px-4 rounded-lg border border-slate-200 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-sunset-orange/20 focus:border-sunset-orange"
-        >
-          <option value="" disabled>Select a vehicle</option>
-          <option value="Scooter (Activa/Jupiter)">Scooter (Activa/Jupiter)</option>
-          <option value="Bike - Normal (Pulsar/Apache)">Bike - Normal (Pulsar/Apache)</option>
-          <option value="Bike - Bullet (Royal Enfield)">Bike - Bullet (Royal Enfield)</option>
-        </select>
+          placeholder="Select a vehicle"
+          options={BIKE_VEHICLES}
+          onChange={setPreferredVehicle}
+        />
       </div>
 
       <button 
