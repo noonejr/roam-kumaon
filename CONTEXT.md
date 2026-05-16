@@ -12,7 +12,7 @@ A formal inquiry from a user for the pricing of a **Booking**. Includes details 
 A price estimate provided by the operator after reviewing a **Quote Request**, rather than being calculated automatically by the system.
 
 ### Vehicle Category
-The classification of the vehicle required for the service (e.g., Sedan, SUV).
+The classification of the vehicle required for the service (e.g., Shared, 4 Seater, 7 Seater).
 
 ### Pickup Point
 The starting location of a **Booking**. (Phase 1: Kathgodam, Haldwani)

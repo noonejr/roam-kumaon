@@ -15,11 +15,11 @@ export function CabForm() {
   const [dropoff, setDropoff] = useState<string>(CAB_DROPOFF_POINTS[0])
   const [date, setDate] = useState('')
   const [passengers, setPassengers] = useState('1')
-  const [category, setCategory] = useState('SUV')
+  const [category, setCategory] = useState('4 Seater')
   const isValid = name.trim().length > 0 && date.length > 0 && Number.isInteger(Number(passengers)) && Number(passengers) >= 1
   const onSubmit = async (e: FormEvent) => {
     e.preventDefault()
-    const message = `Cab Quote Request\nName: ${name.trim()}\nPickup: ${pickup}\nDrop-off: ${dropoff}\nDate: ${date}\nPassengers: ${passengers}\nCategory: ${category}`
+    const message = `Cab Quote Request\nName: ${name.trim()}\nPickup: ${pickup}\nDrop-off: ${dropoff}\nDate: ${date}\nPassengers: ${passengers}\nVehicle: ${category}`
     await openWhatsAppWithFallback(message, '/events/whatsapp-open/cab')
   }
   return (
@@ -91,7 +91,7 @@ export function CabForm() {
           id="cab-category"
           required
           value={category}
-          options={["SUV", "Sedan", "Hatchback"]}
+          options={["Shared", "4 Seater", "7 Seater"]}
           onChange={setCategory}
         />
       </div>

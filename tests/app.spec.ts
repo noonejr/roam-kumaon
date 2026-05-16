@@ -36,6 +36,7 @@ test('cab form submission builds expected whatsapp message', async ({ page }) =>
   })
   expect(text).toContain('Cab Quote Request')
   expect(text).toContain('Name: Ravi')
+  expect(text).toContain('Vehicle: 4 Seater')
 })
 
 test('bike form submission includes fixed rental location', async ({ page }) => {
