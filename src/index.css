@@ -27,3 +27,34 @@ h1, h2, h3, h4 {
   font-family: var(--font-headline);
   @apply font-bold text-pine-green;
 }
+
+input:not([type="checkbox"]):not([type="radio"]),
+select,
+textarea {
+  @apply w-full h-12 px-4 rounded-lg border border-slate-200 bg-slate-50 text-sm transition-all outline-none;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  @apply border-pine-green ring-1 ring-pine-green bg-white;
+}
+
+select {
+  @apply appearance-none bg-no-repeat;
+  background-position: right 1rem center;
+  background-size: 1.5em 1.5em;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23475569'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+}
+
+input[type="date"] {
+  @apply relative;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  @apply absolute inset-0 w-full h-full opacity-0 cursor-pointer;
+}
+
+label {
+  @apply mb-1.5 block text-xs font-semibold text-slate-500 uppercase tracking-wider;
+}
