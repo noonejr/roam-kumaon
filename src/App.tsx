@@ -27,10 +27,10 @@ function App() {
           
           <div className="relative z-10 grid w-full max-w-7xl gap-12 lg:grid-cols-2">
             <div className="text-white">
-              <h1 className="text-4xl font-bold leading-tight text-white md:text-6xl">
+              <h1 className="!text-white text-4xl font-bold leading-tight md:text-6xl">
                 Your Journey Through the Kumaon Himalayas Starts Here
               </h1>
-              <p className="mt-6 text-lg opacity-90">
+              <p className="mt-6 text-lg !text-white opacity-90">
                 Reliable local experts providing premium rentals from Haldwani and Kathgodam to destinations across Kumaon.
               </p>
             </div>
