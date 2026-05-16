@@ -1,15 +1,24 @@
 import { type FormEvent, useState } from 'react'
 import { BIKE_RENTAL_LOCATION } from '../constants/locations'
 import { openWhatsAppWithFallback } from '../utils/whatsapp'
+import { CustomDatePicker } from './ui/CustomDatePicker'
 
 export function BikeForm() {
   const [name, setName] = useState('')
   const [startDate, setStartDate] = useState('')
   const [returnDate, setReturnDate] = useState('')
-  const isValid = name.trim().length > 0 && startDate.length > 0 && returnDate.length > 0 && returnDate >= startDate
+  const [preferredVehicle, setPreferredVehicle] = useState('')
+
+  const isValid = 
+    name.trim().length > 0 && 
+    startDate.length > 0 && 
+    returnDate.length > 0 && 
+    returnDate >= startDate &&
+    preferredVehicle.length > 0
+
   const onSubmit = async (e: FormEvent) => {
     e.preventDefault()
-    const message = `Bike Rental Quote Request\nName: ${name.trim()}\nStart Date: ${startDate}\nReturn Date: ${returnDate}\nPickup & Return: ${BIKE_RENTAL_LOCATION}`
+    const message = `Bike Rental Quote Request\nName: ${name.trim()}\nVehicle: ${preferredVehicle}\nStart Date: ${startDate}\nReturn Date: ${returnDate}\nPickup & Return: ${BIKE_RENTAL_LOCATION}`
     await openWhatsAppWithFallback(message, '/events/whatsapp-open/bike')
   }
   return (
@@ -19,6 +28,7 @@ export function BikeForm() {
         <input 
           aria-label="Name" 
           placeholder="e.g. Jane Smith"
+          className="w-full"
           value={name} 
           onChange={(e) => setName(e.target.value)} 
         />
@@ -33,25 +43,40 @@ export function BikeForm() {
 
       <div>
         <label>Start Date</label>
-        <input 
-          aria-label="Start Date" 
-          type="date" 
-          className="[color-scheme:light]"
+        <CustomDatePicker 
+          label="Start Date" 
           value={startDate} 
-          onChange={(e) => setStartDate(e.target.value)} 
+          onChange={setStartDate}
+          placeholder="yyyy-mm-dd"
         />
       </div>
 
       <div>
         <label>Return Date</label>
-        <input 
-          aria-label="Return Date" 
-          type="date" 
-          className="[color-scheme:light]"
+        <CustomDatePicker 
+          label="Return Date" 
           value={returnDate} 
-          min={startDate} 
-          onChange={(e) => setReturnDate(e.target.value)} 
+          onChange={setReturnDate}
+          minDate={startDate}
+          placeholder="yyyy-mm-dd"
         />
+      </div>
+
+      <div className="md:col-span-2">
+        <label className="block text-sm font-medium text-slate-700 mb-1">
+          Preferred Vehicle <span className="text-red-500">*</span>
+        </label>
+        <select 
+          required
+          value={preferredVehicle}
+          onChange={(e) => setPreferredVehicle(e.target.value)}
+          className="w-full h-12 px-4 rounded-lg border border-slate-200 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-sunset-orange/20 focus:border-sunset-orange"
+        >
+          <option value="" disabled>Select a vehicle</option>
+          <option value="Scooter (Activa/Jupiter)">Scooter (Activa/Jupiter)</option>
+          <option value="Bike - Normal (Pulsar/Apache)">Bike - Normal (Pulsar/Apache)</option>
+          <option value="Bike - Bullet (Royal Enfield)">Bike - Bullet (Royal Enfield)</option>
+        </select>
       </div>
 
       <button 
