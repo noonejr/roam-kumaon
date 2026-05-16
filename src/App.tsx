@@ -61,7 +61,7 @@ function App() {
 
         <Features />
         <Routes />
-        <Fleet />
+        <Fleet service={service} />
       </main>
       <Footer />
     </div>
