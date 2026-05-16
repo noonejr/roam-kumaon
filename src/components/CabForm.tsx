@@ -76,14 +76,17 @@ export function CabForm() {
       </div>
 
       <div className="md:col-span-2">
-        <label className="mb-1 block text-xs font-semibold text-slate-500 uppercase tracking-wider">Preferred Vehicle (SUV, Sedan, etc.)</label>
-        <input 
+        <label className="mb-1 block text-xs font-semibold text-slate-500 uppercase tracking-wider">Preferred Vehicle</label>
+        <select 
           aria-label="Category" 
-          placeholder="e.g. SUV, Innova"
           className="w-full rounded-lg border border-slate-200 bg-slate-50 p-3 text-sm focus:border-pine-green focus:outline-none" 
           value={category} 
           onChange={(e) => setCategory(e.target.value)} 
-        />
+        >
+          <option value="Shared">Shared</option>
+          <option value="4 Seater">4 Seater</option>
+          <option value="7 Seater">7 Seater</option>
+        </select>
       </div>
 
       <button 
