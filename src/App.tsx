@@ -41,13 +41,13 @@ function App() {
               
               <div className="mb-8 flex rounded-lg bg-slate-100 p-1">
                 <button 
-                  className={`flex-1 rounded-md py-2 text-sm font-semibold transition-all ${service === 'cab' ? 'bg-white shadow-sm text-pine-green' : 'text-slate-500'}`}
+                  className={`flex-1 rounded-md py-2 text-sm font-semibold transition-all ${service === 'cab' ? 'bg-white shadow-sm text-sunset-orange' : 'text-slate-500'}`}
                   onClick={() => setService('cab')}
                 >
                   Book a Cab
                 </button>
                 <button 
-                  className={`flex-1 rounded-md py-2 text-sm font-semibold transition-all ${service === 'bike' ? 'bg-white shadow-sm text-pine-green' : 'text-slate-500'}`}
+                  className={`flex-1 rounded-md py-2 text-sm font-semibold transition-all ${service === 'bike' ? 'bg-white shadow-sm text-sunset-orange' : 'text-slate-500'}`}
                   onClick={() => setService('bike')}
                 >
                   Rent a Bike

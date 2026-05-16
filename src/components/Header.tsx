@@ -14,7 +14,7 @@ export function Header() {
             </a>
           ))}
         </nav>
-        <button onClick={scrollToForm} className="rounded-full bg-pine-green px-6 py-2 text-sm font-semibold text-white transition-transform active:scale-95">
+        <button onClick={scrollToForm} className="rounded-full bg-sunset-orange px-6 py-2 text-sm font-semibold text-white transition-transform active:scale-95">
           Book Now
         </button>
       </div>

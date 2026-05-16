@@ -80,7 +80,7 @@ export function Fleet() {
               </ul>
               <button 
                 onClick={() => document.getElementById('hero')?.scrollIntoView({ behavior: 'smooth' })}
-                className="w-full py-4 bg-pine-green text-white rounded-xl font-bold hover:bg-pine-green/90 transition-colors"
+                className="w-full py-4 bg-sunset-orange text-white rounded-xl font-bold hover:bg-opacity-90 transition-colors"
               >
                 Inquire Now
               </button>
